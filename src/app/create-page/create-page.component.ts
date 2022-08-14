@@ -14,7 +14,7 @@ export class CreatePageComponent implements OnInit {
     lname: new FormControl(' '),
     email: new FormControl(' '),
     phone: new FormControl(' '),
-    dob: new FormControl('2000-01-01'),
+    dob: new FormControl('2000-01-02'),
   });
 
   users: createUser[] = [];
