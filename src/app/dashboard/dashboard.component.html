@@ -1,0 +1,20 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 holder text-center">
+    <div *ngFor="let user of users" class="col">
+        <div class="card rounded-3 mt-2 shadow-sm">
+            <img src="{{user.avatar}}" class="card-img-top ">
+
+            <div class="card-body">
+                <h2 class="card-title">
+                    {{user.first_name}} {{user.last_name}}<br>
+                </h2>
+                <small class="text-muted">
+                    {{user.email}}
+                </small>
+
+                <div class="d-flex justify-content-between align-items-center">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

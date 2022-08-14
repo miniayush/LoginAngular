@@ -1,0 +1,56 @@
+<form class="m-5" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+    <div class="row mb-4">
+        <label for="fName">Name</label>
+        <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="fName" placeholder="First Name" formControlName="fname">
+            <small>First Name</small>
+        </div>
+        <div class="form-group col-md-6">
+            <input type="text" class="form-control" id="lName" placeholder="Last Name" formControlName="lname">
+            <small>Last Name</small>
+
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="form-group col-md-4">
+            <label for="email">Contact</label>
+            <input type="email" class="form-control" id="email" placeholder="abc@xyz.com" formControlName="email">
+            <small>Email</small>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="phone"></label>
+
+            <input type="tel" class="form-control" id="phone" placeholder="0000-000-000" formControlName="phone">
+            <small>Phone</small>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="dob">DOB</label>
+            <input type="date" class="form-control" id="dob" formControlName="dob">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-dark">Submit</button>
+
+</form>
+<!-- {{myForm.value | json}} -->
+
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">DOB</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users;index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{user.fname +" "+user.lname}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phone}}</td>
+            <td>{{user.dob}}</td>
+        </tr>
+    </tbody>
+</table>
