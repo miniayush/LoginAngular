@@ -19,6 +19,7 @@ export interface Raw {
 }
 
 export interface createUser {
+  id:number;
   fname: '';
   lname: '';
   email: '';

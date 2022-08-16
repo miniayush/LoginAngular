@@ -3,40 +3,42 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { createUser } from './users';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CreateService {
-  private httpServer = 'http://localhost:3000/users'
+  private httpServer = 'http://localhost:3000/users';
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-  getCreatedUsers(): Observable<createUser>{
+  getCreatedUsers(): Observable<createUser> {
     return this.httpClient
-    .get<any>(this.httpServer)
-    .pipe(catchError(this.errorHandler))
+      .get<createUser>(this.httpServer)
+      .pipe(catchError(this.errorHandler));
   }
-  createUser(data:createUser){
-    return this.httpClient.post(this.httpServer,data)
+  createUser(data: createUser) {
+    return this.httpClient.post(this.httpServer, data);
   }
-  errorHandler(error:any){
+  deleteUser(id: number) {
+    const url = `${this.httpServer}/${id}`;
+    // console.log(url);
+    
+    return this.httpClient.delete(url);
+  }
+  errorHandler(error: any) {
     let errorMessage = '';
 
-  if (error.error instanceof ErrorEvent) {
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
 
-   // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
 
-   errorMessage = error.error.message;
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
 
-  } else {
+    console.log(errorMessage);
 
-   // Get server-side error
-
-   errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-
-  }
-
-  console.log(errorMessage);
-
-  return throwError(errorMessage);
+    return throwError(errorMessage);
   }
 }
